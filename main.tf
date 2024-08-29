@@ -8,17 +8,17 @@ module "github_repository" {
   github_owner             = var.GITHUB_OWNER
   github_token             = var.GITHUB_TOKEN
   repository_name          = var.FLUX_GITHUB_REPO
-  repository_visibility    = "public"
+  repository_visibility    = "private"
   public_key_openssh       = module.tls_private_key.public_key_openssh
   public_key_openssh_title = "flux0"
 }
 
 module "gke_cluster" {
-  source         = "github.com/andrey-ilin/tf-google-gke-cluster"
-  GOOGLE_REGION  = var.GOOGLE_REGION
-  GOOGLE_PROJECT = var.GOOGLE_PROJECT
+  source           = "github.com/andrey-ilin/tf-google-gke-cluster"
+  GOOGLE_REGION    = var.GOOGLE_REGION
+  GOOGLE_PROJECT   = var.GOOGLE_PROJECT
   GKE_MACHINE_TYPE = "e2-highmem-2"
-  GKE_NUM_NODES  = 1
+  GKE_NUM_NODES    = 1
 }
 
 # Use for local test, uncomment if needed and comment module "gke_cluster" to avoid real infra creation
